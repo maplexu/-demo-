@@ -1,0 +1,71 @@
+<!--pages/news/news.wxml-->
+<view class="news-container">
+  <view class="news-header">
+    <view class="header-list">
+      <view wx:for="{{newsSort}}" wx:key="item.id" class="header-item {{selectedkey===item.id ? 'header-active' : ''}}" data-id="{{item.id}}" bindtap="chooseSort">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="news-body">
+    <!-- <view class="news-item">
+      <view class="news-item_title">新闻标题1123123asd第三方十大建设大局阿是肯德基阿克琉斯多久阿是的吉拉屎的拉萨到家阿是的阿是的</view>
+      <view class="news-item_imgList">
+        <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+        <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+        <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+      </view>
+      <view class="news_time">搜狐体育  30分钟前</view>
+    </view>
+    <view class="news-item">
+      <view class="news-item-wrapper">
+        <view class="news-item_title">新闻标题1123123asd第三方十大建设大局阿是肯德基阿克琉斯多久阿是的吉拉屎的拉萨到家阿是的阿是的</view>
+        <view class="news-item_imgList">
+          <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+          <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+          <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+        </view>
+      </view>
+      <view class="news_time">央视网  2小时前</view>
+    </view>
+    <view class="news-item">
+      <view class="news-item-wrapper2">
+        <view class="news-item_title2">新闻标题1123123asd第三方十大建设大局阿是肯德基阿克琉斯多久阿是的吉拉屎的拉萨到家阿是的阿是的</view>
+        <view class="news-item_imgList2">
+          <image src="http://04imgmini.eastday.com/mobile/20181218/20181218110009_9e5a91ff1d5121710bc079a2daf7449b_3_mwpm_03200403.jpg"></image>
+        </view>
+      </view>
+      <view class="news_time">体育时空  3天前</view>
+    </view> -->
+    <view wx:if="{{newsList.length == 0}}" class="emptyData-wrapper">
+      <view class="emptyData_title">
+        头条新闻正在努力加载中
+      </view>
+      <view class="emptyData_img">
+        <image src="../../imgs/loading.gif"></image>
+      </view>
+    </view>
+    <view wx:if="{{newsList.length > 0}}">
+      <view class="news-item" wx:for="{{newsList}}" wx:key="{item.uniquekey}" data-url="{{item.url}}" bindtap="openNewsDetail">
+        <!-- 新闻只有一张图的情况 -->
+        <view wx:if="{{!item.thumbnail_pic_s02}}" class="news-item-wrapper2">
+          <view class="news-item_title2">{{item.title}}</view>
+          <view class="news-item_imgList2">
+            <image src="{{item.thumbnail_pic_s}}"></image>
+          </view>
+        </view>
+        <!-- 新闻有两张图及其以上的情况 -->
+        <view wx:if="{{item.thumbnail_pic_s02}}" class="news-item-wrapper">
+          <view class="news-item_title">{{item.title}}</view>
+          <view class="news-item_imgList">
+            <image src="{{item.thumbnail_pic_s}}"></image>
+            <image src="{{item.thumbnail_pic_s02}}"></image>
+            <image src="{{item.thumbnail_pic_s03}}"></image>
+          </view>
+        </view>
+        <view class="news_time">{{item.author_name}} - {{item.date}}</view>
+      </view>
+    </view>
+  </view>
+</view>
